@@ -1,0 +1,15 @@
+@use "../../lib/bulma/sass/utilities/derived-variables.sass" as bulma_vars
+@use "bulma-nouislider.config.sass" as config
+
+.#{config.$slider-styled-class}
+    .#{config.$noUi-css-prefix}-connect
+        @each $name, $pair in bulma_vars.$colors
+            $color: nth($pair, 1)
+            $color-invert: nth($pair, 2)
+            
+            &.is-#{$name}
+                background: $color !important
+                //color: $color-invert   
+                &.is-inverted
+                    background: $color-invert !important
+                    ////color: $color
