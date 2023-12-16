@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example</title>
+
+    <!-- <link rel="stylesheet" href="../lib/bulma/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="../lib/noUiSlider-15.7.1/dist/nouislider.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.css">
+    <!-- <link rel="stylesheet" href="css/bulma-nouislider.css"> -->
+    <!-- <link rel="stylesheet" href="../src/sass/test.css"> -->
+    <link rel="stylesheet" href="css/test.css">
+
+    <!-- <script src="../lib/noUiSlider-15.7.1/dist/nouislider.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+</head>
+<body>
+    <section class="section" style="padding-top:2rem;padding-bottom:1rem;"><div class="container">
+        <div class="box">
+            <div id="slider-s" class="slider-styled is-small"></div>
+            <div id="slider" class="slider-styled is-warning-connect"></div>
+            <div id="slider-m" class="slider-styled is-warning-connect is-light is-medium"></div>
+            <div id="slider-l" class="slider-styled is-large is-circle is-primary" disabled></div>
+        </div>
+    </div></section>
+    <section class="section" style="padding-top:1rem;padding-bottom:1rem;"><div class="container">
+        <div class="box" style="padding: 0 20px">
+            <div id="slider-vert-s" class="slider-styled is-warning-connect is-small" style="height: 200px;display:inline-block;margin:10px 10px;"></div>
+            <div id="slider-vert" class="slider-styled" style="height: 200px;display:inline-block;margin:10px 10px;"></div>
+            <div style="display:inline-block;height:100%;background:#555;"><div id="slider-vert-m" class="slider-styled is-medium is-info is-primary-connect is-inverted" style="height: 200px;display:inline-block;margin:10px 10px;"></div></div>
+            <div id="slider-vert-l" class="slider-styled is-info-connect is-large is-dark" style="height: 200px;display:inline-block;margin:10px 10px;"></div>
+        </div>
+    </div></section>
+</body>
+<script>
+var slider = document.getElementById('slider');
+var sliders = document.getElementById('slider-s');
+var sliderm = document.getElementById('slider-m');
+var sliderl = document.getElementById('slider-l');
+
+noUiSlider.create(slider, {
+    start: [20, 80],
+    connect: false,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(sliders, {
+    start: [20, 80],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(sliderm, {
+    start: [20, 80],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(sliderl, {
+    start: [20, 80],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+
+var slidervert = document.getElementById('slider-vert');
+var sliderverts = document.getElementById('slider-vert-s');
+var slidervertm = document.getElementById('slider-vert-m');
+var slidervertl = document.getElementById('slider-vert-l');
+
+noUiSlider.create(slidervert, {
+    start: [20, 80],
+    connect: false,
+    orientation: "vertical",
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(sliderverts, {
+    start: [20, 80],
+    connect: true,
+    orientation: "vertical",
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(slidervertm, {
+    start: [20, 80],
+    connect: true,
+    orientation: "vertical",
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+noUiSlider.create(slidervertl, {
+    start: [20, 80],
+    connect: true,
+    orientation: "vertical",
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+
+</script>
+</html>

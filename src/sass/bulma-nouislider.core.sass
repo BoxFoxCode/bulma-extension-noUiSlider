@@ -2,8 +2,35 @@
 @use "../../lib/bulma/sass/utilities/derived-variables.sass" as bulma_vars
 @use "bulma-nouislider.config.sass" as config
 
+// Variables
 $orientation: horizontal vertical
 
+// Functions
+
+=slider-size($size, $orient)
+    $track-height: math.div($size, config.$slider-thumb-to-track-ratio)
+    $thumb-size: $size
+
+    &.#{config.$noUi-css-prefix}-#{$orient}
+        @if $orient == horizontal
+            height: $track-height
+        @else if $orient == vertical
+            width: $track-height
+
+        .#{config.$noUi-css-prefix}-handle
+            $thumb-size-adj: ($thumb-size + 0.2) //* 1rem + 0.2rem*/
+            @if $orient == horizontal
+                height: $thumb-size-adj
+                width: $thumb-size-adj
+                top: (0 - math.div($thumb-size, 3.25))
+                right: (0 - math.div($thumb-size-adj, 2)) //* half the width */
+            @else if $orient == vertical
+                width: $thumb-size-adj
+                height: $thumb-size-adj
+                right: (0 - math.div($thumb-size, 3))
+                bottom: (0 - math.div($thumb-size-adj, 2)) //* half the height */
+
+// Styling
 .#{config.$slider-styled-class} 
     -webkit-appearance: none
     -moz-appearance: none
@@ -48,25 +75,16 @@ $orientation: horizontal vertical
     
 
     @each $orient in $orientation
-        &.#{config.$noUi-css-prefix}-#{$orient}
-            @if $orient == horizontal
-                height: 0.5rem
-            @else if $orient == vertical
-                width: 0.5rem
+        +slider-size(bulma_vars.$size-normal, $orient)
+        &.is-small
+            +slider-size(bulma_vars.$size-small, $orient)
 
-            .#{config.$noUi-css-prefix}-handle
-                @if $orient == horizontal
-                    height: 1.2rem //* 1rem + 0.2rem*/
-                    width: 1.2rem
-                    //*top: -0.38rem;*/
-                    top: calc(-0.5rem / 1.3) //* negative slider height divided by 1.3 (times 0.77) - rough */
-                    right: -0.6rem //* half the width */
-                @else if $orient == vertical
-                    width: 1.2rem //* 1rem + 0.2rem*/
-                    height: 1.2rem
-                    //*right: -0.4rem;*/
-                    right: calc(-0.5rem / 1.4)
-                    bottom: -0.6rem //* half the height */
+        &.is-medium
+            +slider-size(bulma_vars.$size-medium, $orient)
+
+        &.is-large
+            +slider-size(bulma_vars.$size-large, $orient)
+
     // Colors
     @each $name, $pair in bulma_vars.$colors
         $color: nth($pair, 1)
@@ -77,6 +95,17 @@ $orientation: horizontal vertical
             background: $color !important
             &.is-inverted
                 background: $color-invert !important
+            @if length($pair) >= 4
+                $color-light: nth($pair, 3)
+                $color-dark: nth($pair, 4)
+                &.is-light
+                    background: $color-light !important
+                    &.is-inverted
+                        background: $color-dark !important
+                &.is-dark
+                    background: $color-dark !important
+                    &.is-inverted
+                        background: $color-light !important
 
         // All connect color defined by slider
         &.is-#{$name}-connect
@@ -87,6 +116,21 @@ $orientation: horizontal vertical
                 .#{config.$noUi-css-prefix}-connect
                     background: $color-invert !important
                     ////color: $color
+            @if length($pair) >= 4
+                $color-light: nth($pair, 3)
+                $color-dark: nth($pair, 4)
+                &.is-light
+                    .#{config.$noUi-css-prefix}-connect
+                        background: $color-light !important
+                        &.is-inverted
+                            .#{config.$noUi-css-prefix}-connect
+                                background: $color-dark !important
+                &.is-dark
+                    .#{config.$noUi-css-prefix}-connect
+                        background: $color-dark !important
+                        &.is-inverted
+                            .#{config.$noUi-css-prefix}-connect
+                                background: $color-light !important
             
 ///
 /// Styled Disable

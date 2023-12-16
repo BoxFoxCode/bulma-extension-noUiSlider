@@ -13,3 +13,14 @@
                 &.is-inverted
                     background: $color-invert !important
                     ////color: $color
+            @if length($pair) >= 4
+                $color-light: nth($pair, 3)
+                $color-dark: nth($pair, 4)
+                &.is-light
+                    background: $color-light !important
+                    &.is-inverted
+                        background: $color-dark !important
+                &.is-dark
+                    background: $color-dark !important
+                    &.is-inverted
+                        background: $color-light !important

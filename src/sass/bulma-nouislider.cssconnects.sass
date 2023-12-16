@@ -1,2 +1,34 @@
 @use "../../lib/bulma/sass/utilities/derived-variables.sass" as bulma_vars
 @use "bulma-nouislider.config.sass" as config
+
+$nth-child-depth: 5 !default
+
+@for $i from 1 through $nth-child-depth
+    .#{config.$slider-styled-class}
+        @each $name, $pair in bulma_vars.$colors
+            $color: nth($pair, 1)
+            $color-invert: nth($pair, 2)
+            
+            &.is-#{$name}-connect-#{$i}
+                .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                    background: $color !important
+                    //color: $color-invert   
+                &.is-inverted
+                    .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                        background: $color-invert !important
+                        ////color: $color
+            @if length($pair) >= 4
+                $color-light: nth($pair, 3)
+                $color-dark: nth($pair, 4)
+                &.is-light
+                    .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                        background: $color-light !important
+                    &.is-inverted
+                        .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                            background: $color-dark !important
+                &.is-dark
+                    .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                        background: $color-dark !important
+                    &.is-inverted
+                        .#{config.$noUi-css-prefix}-connect:nth-of-type(#{$i})
+                            background: $color-light !important
